@@ -8,7 +8,7 @@ function getUsers(){
 }
 
 function getUser(){
-    fetch(`${url}/2`)
+    fetch(`${url}/1`)
     .then(response =>response.json())
     .then(data => {
         userName.textContent = data.name 
@@ -41,6 +41,25 @@ const newUser ={
     city:"Espanha"
 }
 
-addUser(newUser)
+function updateUser(updateUser){
+fetch(`${url}/1`, {
+    method: "PUT",
+    body:JSON.stringify(updateUser),
+    headers:{
+        "Content-type" : "application/json;charset=UTF-8"
+    }
+})
+.then(response => response.json())
+.then(data => alertAPI.textContent = data)
+.catch(error => console.error(error))
+}
+
+const updateUser ={
+    name: "Leandro Cordeiro",
+    avatar:"https://picsum.photos/200/300",
+    city:"Portugal"
+}
+//addUser(newUser)
+updateUser(updateUser)
 getUser()
 getUsers()
